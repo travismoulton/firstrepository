@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block content %}
+{% if results is not false %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">ISBN</th>
+				<th scope="col">Author</th>
+				<th scope="col">Title</th>
+				<th scope="col">Year published</th>				
+			</tr>
+		</thead>
+		<tbody>
+			{% for book in results %}
+				<tr>
+					<th scope="row"></th>
+					<td>{{ book.isbn }}</td>
+					<td>{{ book.author }}</td>
+					<td><a href="books/{{ book.title }}">{{ book.title }}</a></td>
+					<td>{{ book.year }}</td>	
+				</tr>
+			{% endfor %}											
+		</tbody>
+	</table>
+{% else %}
+No results were returned. Want to try another <a href="/">search</a>?
+{% endif %}
+{% endblock %}

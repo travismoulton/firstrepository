@@ -1,0 +1,71 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<!-- Data about the book -->
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Pulsihb year</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ book.year }}</td>
+        <td>{{ book.isbn }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+      </tr>
+    </tbody>
+</table>
+
+<!-- Review information from good reads-->
+<h1>Good reads data</h1>
+<p>Goods reading member ratings: {{ good_reads.ratings_count }}</p>
+<br>
+<p>Average ratings from good reads: {{ good_reads.average_rating }}</p>
+
+<!-- User reviews on this website.-->
+<h1>Reviews</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Reviewer username</th>
+      <th scope="col">Reviewer rating</th>
+      <th scope="col">Review</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for review in reviews %}
+      <tr>
+        <td>{{ review.username }}</td>
+        <td>{{ review.rating }}</td>
+        <td>{{ review.review_text }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<form method="post">
+  <div class="form-group">
+    <label for="rating">Rate the book 1-5</label>
+    <select class="form-control" id="rating-select" name="rating">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="text-review">Write a review!</label>
+    <textarea class="form-control" id="text" name="text" rows="3"></textarea>
+	</div>
+	<button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+{% endblock %}
